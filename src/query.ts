@@ -45,4 +45,4 @@ const query = (org: string, repo: string, labels: string[]) => {
   };
 };
 
-export default query;
+export { query };

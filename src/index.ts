@@ -4,7 +4,7 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as fs from "fs";
-import query from "./query";
+import { query } from "./query";
 import { Organization } from "./dataStructures/organization";
 import { OrgData } from "./dataStructures/organization";
 
