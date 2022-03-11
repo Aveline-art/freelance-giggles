@@ -21,8 +21,8 @@ class Issue {
     this.labels = [];
   }
 
-  addLabels(labels: IssueData["labels"]) {
-    for (const label of labels.nodes) {
+  addLabels(labels: IssueData["labels"]["nodes"]) {
+    for (const label of labels) {
       this.labels.push(label.name);
     }
   }

@@ -24,10 +24,9 @@ async function main(org: string, repos: string[], labels: string[]) {
         console.error(err);
       });
   }
-  console.log(organization);
 }
 
-export default main;
+export { main };
 
 /*
 Psudo-code

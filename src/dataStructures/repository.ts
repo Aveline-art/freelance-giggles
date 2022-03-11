@@ -1,7 +1,7 @@
 "use strict";
 
-import { Issue } from "./issues";
-import { IssueData } from "./issues";
+import { Issue } from "./issue";
+import { IssueData } from "./issue";
 
 interface Repository {
   name: string;
@@ -36,7 +36,7 @@ class Repository {
   addIssues(issues: IssueData[]) {
     for (const issue of issues) {
       const issueObj = new Issue(issue.title, issue.url);
-      issueObj.addLabels(issue.labels);
+      issueObj.addLabels(issue.labels.nodes);
       this.issues.push(issueObj);
     }
   }
