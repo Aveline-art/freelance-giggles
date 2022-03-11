@@ -4,7 +4,7 @@
   "description": "What kind of repetitive thing do you have to do often and what is the benefit of automating it?",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/test_variables.js",
+    "test": "jest",
     "watch": "npx tsc --watch"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Aveline-art/freelance-giggles#readme",
   "devDependencies": {
+    "jest": "^27.5.1",
     "typescript": "^4.6.2"
   },
   "dependencies": {
