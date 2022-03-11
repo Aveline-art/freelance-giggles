@@ -3,3 +3,4 @@ dist-ts/
 coverage/
 
 test-token.txt
+testSnippet.js

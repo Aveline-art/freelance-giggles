@@ -19,6 +19,9 @@ const data = {
                 {
                   name: "dependencys",
                 },
+                {
+                  name: "role: front end",
+                },
               ],
             },
           },

@@ -16,6 +16,7 @@ test("assert Issue Labels Empty", () => {
 test("assert Issue Labels With Obj", () => {
   const issue = new Issue("test-title", "test-url");
   issue.addLabels(data.organization.repository.issues.nodes[0].labels.nodes);
-  expect(issue.labels.length).toBe(2);
+  expect(issue.labels.length).toBe(3);
   expect(issue.hasDependency()).toBe(false);
+  expect(issue.roles()).toBe(["front end"]);
 });
