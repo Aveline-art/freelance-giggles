@@ -5,19 +5,23 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as fs from "fs";
 import query from "./query";
-import { Organization, Repository, Issue, Label } from "./organization";
+import { Organization } from "./organization";
+import { OrgData } from "./organization";
 
 // Globals
 const token = fs.readFileSync("test-token.txt", "utf-8");
 const octokit = github.getOctokit(token);
 
 function main(org: string, repo: string, labels: string[]) {
-  const result = octokit.graphql(query(org, repo, labels)).then((data) => {
-    formatData(data);
-  });
-}
+  const organization = new Organization(org);
+  const result = octokit
+    .graphql(query(org, repo, labels))
+    .then((data: OrgData) => {
+      organization.addRepository(data.organization.repository);
 
-function formatData(data) {}
+      console.log(organization);
+    });
+}
 
 export default main;
 

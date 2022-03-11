@@ -14,6 +14,9 @@ const query = (org: string, repo: string, labels: string[]) => {
         repository(name: $repo) {
           name
           url
+          defaultBranchRef {
+            name
+          }
           issues(
             states: OPEN,
             first: 10,

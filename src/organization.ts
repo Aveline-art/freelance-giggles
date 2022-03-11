@@ -13,13 +13,33 @@ interface Repository {
 
 interface Issue {
   title: string;
-  body: string;
   url: string;
-  labels: Label[];
+  labels: string[];
 }
 
-interface Label {
-  name: string;
+interface OrgData {
+  organization?: RepoData;
+}
+
+interface RepoData {
+  repository: {
+    name: string;
+    url: string;
+    defaultBranchRef: {
+      name: string;
+    };
+    issues: {
+      nodes: IssueData[];
+    };
+  };
+}
+
+interface IssueData {
+  title: string;
+  url: string;
+  labels: {
+    nodes: [{ name: string }];
+  };
 }
 
 class Organization {
@@ -27,31 +47,57 @@ class Organization {
     this.name = name;
     this.repositories = [];
   }
+
+  addRepository({ name, url, defaultBranchRef, issues }) {
+    const repo = new Repository(name, url, defaultBranchRef.name);
+    repo.addIssues(issues.nodes);
+    this.repositories.push(repo);
+  }
+
+  listRepositories() {
+    return this.repositories;
+  }
 }
 
 class Repository {
-  constructor(name: string) {
+  constructor(name: string, url: string, defaultBranch: string) {
     this.name = name;
-    this.url = undefined;
-    this.readme = undefined;
-    this.contributing = undefined;
+    this.url = url;
+    this.readme = `${url}#readme`;
+    this.contributing = `${url}/blob/${defaultBranch}/CONTRIBUTING.md`;
     this.issues = [];
+  }
+
+  addIssues(issues: IssueData[]) {
+    for (const issue of issues) {
+      const issueObj = new Issue(issue.title, issue.url);
+      issueObj.addLabels(issue.labels);
+      this.issues.push(issueObj);
+    }
+  }
+
+  listIssues() {
+    return this.issues;
   }
 }
 
 class Issue {
-  constructor(title: string, body: string, url: string) {
+  constructor(title: string, url: string) {
     this.title = title;
-    this.body = body;
     this.url = url;
     this.labels = [];
   }
-}
 
-class Label {
-  constructor(name: string) {
-    this.name = name;
+  addLabels(labels: IssueData["labels"]) {
+    for (const label of labels.nodes) {
+      this.labels.push(label.name);
+    }
+  }
+
+  listLabels() {
+    return this.labels;
   }
 }
 
-export { Organization, Repository, Issue, Label };
+export { Organization, Repository, Issue };
+export { OrgData, RepoData, IssueData };
