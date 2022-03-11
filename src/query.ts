@@ -1,8 +1,9 @@
-const query = {
-  query: `query OrganizationFreelanceIssues(
+const query = (org: string, repo: string, labels: string[]) => {
+  return {
+    query: `query OrganizationFreelanceIssues(
         $org: String!,
         $repo: String!,
-        $label: String!,
+        $labels: [String!],
       ) {
         organization(login: $org) {
           ...repo
@@ -18,7 +19,7 @@ const query = {
             first: 10,
             filterBy: {
               assignee: null, 
-                labels: [$label]
+                labels: $labels
             }
           ) {
             nodes {
@@ -33,57 +34,10 @@ const query = {
           }
         }
       }`,
-  org: "hackforla",
-  repo: "website",
-  label: "good first issue",
+    org: org,
+    repo: repo,
+    labels: labels,
+  };
 };
 
-/*
-////////////////query///////////////
-
-query OrganizationFreelanceIssues(
-  $org: String!,
-  $repo: String!,
-  $label: String!,
-) {
-  organization(login: $org) {
-    ...repo
-  }
-}
-
-fragment repo on Organization {
-  repository(name: $repo) {
-    name
-    url
-    issues(
-      states: OPEN,
-      first: 10,
-      filterBy: {
-        assignee: null, 
-      	labels: [$label]
-      }
-    ) {
-      nodes {
-        title
-        url
-        labels(first: 10) {
-          nodes {
-            name
-          }
-        }
-      }
-    }
-  }
-}
-
-////////////////variables///////////////
-
-{
-  "org": "hackforla",
-  "repo": "website",
-  "label": "good first issue"
-}
-
-
-
-*/
+export default query;
