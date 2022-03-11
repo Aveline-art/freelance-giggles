@@ -5,8 +5,8 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as fs from "fs";
 import query from "./query";
-import { Organization } from "./organization";
-import { OrgData } from "./organization";
+import { Organization } from "./dataStructures/organization";
+import { OrgData } from "./dataStructures/organization";
 
 // Globals
 const token = fs.readFileSync("test-token.txt", "utf-8");

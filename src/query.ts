@@ -1,3 +1,5 @@
+"use strict";
+
 const query = (org: string, repo: string, labels: string[]) => {
   return {
     query: `query OrganizationFreelanceIssues(
