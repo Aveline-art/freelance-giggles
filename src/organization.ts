@@ -5,7 +5,7 @@ interface Organization {
 
 interface Repository {
   name: string;
-  link: string;
+  url: string;
   readme: string;
   contributing: string;
   issues: Issue[];
@@ -13,8 +13,13 @@ interface Repository {
 
 interface Issue {
   title: string;
-  text: string;
-  link: string;
+  body: string;
+  url: string;
+  labels: Label[];
+}
+
+interface Label {
+  name: string;
 }
 
 class Organization {
@@ -27,7 +32,7 @@ class Organization {
 class Repository {
   constructor(name: string) {
     this.name = name;
-    this.link = undefined;
+    this.url = undefined;
     this.readme = undefined;
     this.contributing = undefined;
     this.issues = [];
@@ -35,9 +40,16 @@ class Repository {
 }
 
 class Issue {
-  constructor(title: string, text: string, link: string) {
+  constructor(title: string, body: string, url: string) {
     this.title = title;
-    this.text = text;
-    this.link = link;
+    this.body = body;
+    this.url = url;
+    this.labels = [];
+  }
+}
+
+class Label {
+  constructor(name: string) {
+    this.name = name;
   }
 }
