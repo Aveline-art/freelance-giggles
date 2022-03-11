@@ -1,5 +1,8 @@
 "use strict";
 
+import { Issue } from "./issues";
+import { IssueData } from "./issues";
+
 interface Repository {
   name: string;
   url: string;
@@ -42,3 +45,6 @@ class Repository {
     return this.issues;
   }
 }
+
+export { Repository };
+export { RepoData };
