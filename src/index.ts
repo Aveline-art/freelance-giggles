@@ -4,12 +4,22 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as fs from "fs";
+import query from "./query";
+import { Organization, Repository, Issue, Label } from "./organization";
 
 // Globals
 const token = fs.readFileSync("test-token.txt", "utf-8");
 const octokit = github.getOctokit(token);
 
-console.log("hahaha");
+function main(org: string, repo: string, labels: string[]) {
+  const result = octokit.graphql(query(org, repo, labels)).then((data) => {
+    formatData(data);
+  });
+}
+
+function formatData(data) {}
+
+export default main;
 
 /*
 Psudo-code

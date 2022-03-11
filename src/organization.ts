@@ -53,3 +53,5 @@ class Label {
     this.name = name;
   }
 }
+
+export { Organization, Repository, Issue, Label };

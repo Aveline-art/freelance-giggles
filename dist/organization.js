@@ -1,25 +1,35 @@
-var Organization = /** @class */ (function () {
-    function Organization(name) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Label = exports.Issue = exports.Repository = exports.Organization = void 0;
+class Organization {
+    constructor(name) {
         this.name = name;
         this.repositories = [];
     }
-    return Organization;
-}());
-var Repository = /** @class */ (function () {
-    function Repository(name) {
+}
+exports.Organization = Organization;
+class Repository {
+    constructor(name) {
         this.name = name;
-        this.link = undefined;
+        this.url = undefined;
         this.readme = undefined;
         this.contributing = undefined;
         this.issues = [];
     }
-    return Repository;
-}());
-var Issue = /** @class */ (function () {
-    function Issue(title, text, link) {
+}
+exports.Repository = Repository;
+class Issue {
+    constructor(title, body, url) {
         this.title = title;
-        this.text = text;
-        this.link = link;
+        this.body = body;
+        this.url = url;
+        this.labels = [];
     }
-    return Issue;
-}());
+}
+exports.Issue = Issue;
+class Label {
+    constructor(name) {
+        this.name = name;
+    }
+}
+exports.Label = Label;

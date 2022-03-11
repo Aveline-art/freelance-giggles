@@ -4,7 +4,7 @@
   "description": "What kind of repetitive thing do you have to do often and what is the benefit of automating it?",
   "main": "index.js",
   "scripts": {
-    "test": "node dist/index.js",
+    "test": "node tests/test_variables.js",
     "watch": "npx tsc --watch"
   },
   "repository": {
