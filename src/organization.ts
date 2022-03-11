@@ -97,6 +97,10 @@ class Issue {
   listLabels() {
     return this.labels;
   }
+
+  hasDependency() {
+    return this.labels.includes("dependency");
+  }
 }
 
 export { Organization, Repository, Issue };

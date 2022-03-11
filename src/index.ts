@@ -12,15 +12,19 @@ import { OrgData } from "./organization";
 const token = fs.readFileSync("test-token.txt", "utf-8");
 const octokit = github.getOctokit(token);
 
-function main(org: string, repo: string, labels: string[]) {
+async function main(org: string, repos: string[], labels: string[]) {
   const organization = new Organization(org);
-  const result = octokit
-    .graphql(query(org, repo, labels))
-    .then((data: OrgData) => {
-      organization.addRepository(data.organization.repository);
-
-      console.log(organization);
-    });
+  for (const repo of repos) {
+    await octokit
+      .graphql(query(org, repo, labels))
+      .then((data: OrgData) => {
+        organization.addRepository(data.organization.repository);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  console.log(organization);
 }
 
 export default main;

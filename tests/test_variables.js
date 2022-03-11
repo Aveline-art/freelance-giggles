@@ -1,7 +1,7 @@
-const main = require("../dist/index");
+const main = require("../dist-ts/index");
 
 const org = "hackforla";
-const repo = "website";
+const repos = ["website", "VRMS"];
 const labels = ["good first issue"];
 
-main.default(org, repo, labels);
+main.default(org, repos, labels);
