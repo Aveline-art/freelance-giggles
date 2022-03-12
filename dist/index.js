@@ -8730,11 +8730,21 @@ function commitScript() {
     (0, child_process_1.spawn)("git", ["--version"]).stdout.on("data", (data) => {
         console.log(`stdout: ${data}`);
     });
-    (0, child_process_1.spawn)("git", ["config", "user.name", "github-actions"]);
-    (0, child_process_1.spawn)("git", ["config", "user.email", "github-actions@github.com"]);
-    (0, child_process_1.spawn)("git", ["add", "."]);
-    (0, child_process_1.spawn)("git", ["commit", "-m", "Updated with new data"]);
-    (0, child_process_1.spawn)("git", ["push", "user.name", "github-actions"]);
+    (0, child_process_1.spawn)("git", ["config", "user.name", "github-actions"]).stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+    });
+    (0, child_process_1.spawn)("git", ["config", "user.email", "github-actions@github.com"]).stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+    });
+    (0, child_process_1.spawn)("git", ["add", "."]).stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+    });
+    (0, child_process_1.spawn)("git", ["commit", "-m", "Updated with new data"]).stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+    });
+    (0, child_process_1.spawn)("git", ["push", "user.name", "github-actions"]).stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+    });
 }
 main();
 

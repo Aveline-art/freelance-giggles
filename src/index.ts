@@ -47,11 +47,33 @@ function commitScript() {
   spawn("git", ["--version"]).stdout.on("data", (data) => {
     console.log(`stdout: ${data}`);
   });
-  spawn("git", ["config", "user.name", "github-actions"]);
-  spawn("git", ["config", "user.email", "github-actions@github.com"]);
-  spawn("git", ["add", "."]);
-  spawn("git", ["commit", "-m", "Updated with new data"]);
-  spawn("git", ["push", "user.name", "github-actions"]);
+  spawn("git", ["config", "user.name", "github-actions"]).stdout.on(
+    "data",
+    (data) => {
+      console.log(`stdout: ${data}`);
+    }
+  );
+  spawn("git", ["config", "user.email", "github-actions@github.com"]).stdout.on(
+    "data",
+    (data) => {
+      console.log(`stdout: ${data}`);
+    }
+  );
+  spawn("git", ["add", "."]).stdout.on("data", (data) => {
+    console.log(`stdout: ${data}`);
+  });
+  spawn("git", ["commit", "-m", "Updated with new data"]).stdout.on(
+    "data",
+    (data) => {
+      console.log(`stdout: ${data}`);
+    }
+  );
+  spawn("git", ["push", "user.name", "github-actions"]).stdout.on(
+    "data",
+    (data) => {
+      console.log(`stdout: ${data}`);
+    }
+  );
 }
 
 main();
