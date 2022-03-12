@@ -8707,16 +8707,7 @@ async function main() {
     }
     console.log("Writing file...");
     fs.writeFileSync(inputs_1.inputs.outFile, tables.join("\n"));
-    (0, child_process_1.exec)("ls", (error, stdout, stderr) => {
-        console.log(error);
-        console.log(stdout);
-        console.log(stderr);
-    });
-    (0, child_process_1.exec)("script.sh", (error, stdout, stderr) => {
-        console.log(error);
-        console.log(stdout);
-        console.log(stderr);
-    });
+    commitScript();
 }
 async function createTables(org, repos, labels) {
     const organization = new organization_1.Organization(org);
@@ -8734,6 +8725,23 @@ async function createTables(org, repos, labels) {
     }
     const table = organization.tablify();
     return table;
+}
+function commitScript() {
+    (0, child_process_1.exec)('git add "README.md"', (error, stdout, stderr) => {
+        console.log(error);
+        console.log(stdout);
+        console.log(stderr);
+    });
+    (0, child_process_1.exec)('git commit -m "Updated with new data"', (error, stdout, stderr) => {
+        console.log(error);
+        console.log(stdout);
+        console.log(stderr);
+    });
+    (0, child_process_1.exec)("git push", (error, stdout, stderr) => {
+        console.log(error);
+        console.log(stdout);
+        console.log(stderr);
+    });
 }
 main();
 

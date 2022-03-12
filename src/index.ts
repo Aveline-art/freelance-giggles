@@ -22,18 +22,7 @@ async function main() {
   }
   console.log("Writing file...");
   fs.writeFileSync(inputs.outFile, tables.join("\n"));
-
-  exec("ls", (error, stdout, stderr) => {
-    console.log(error);
-    console.log(stdout);
-    console.log(stderr);
-  });
-
-  exec("script.sh", (error, stdout, stderr) => {
-    console.log(error);
-    console.log(stdout);
-    console.log(stderr);
-  });
+  commitScript();
 }
 
 async function createTables(org: string, repos: string[], labels: string[]) {
@@ -52,6 +41,26 @@ async function createTables(org: string, repos: string[], labels: string[]) {
   }
   const table = organization.tablify();
   return table;
+}
+
+function commitScript() {
+  exec('git add "README.md"', (error, stdout, stderr) => {
+    console.log(error);
+    console.log(stdout);
+    console.log(stderr);
+  });
+
+  exec('git commit -m "Updated with new data"', (error, stdout, stderr) => {
+    console.log(error);
+    console.log(stdout);
+    console.log(stderr);
+  });
+
+  exec("git push", (error, stdout, stderr) => {
+    console.log(error);
+    console.log(stdout);
+    console.log(stderr);
+  });
 }
 
 main();
