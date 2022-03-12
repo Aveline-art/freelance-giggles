@@ -9,7 +9,20 @@ import { OrgData } from "./dataStructures/organization";
 
 // Globals
 
-async function main(org: string, repos: string[], labels: string[]) {
+async function main() {
+  const tables = [];
+  for (const item of inputs.configFile) {
+    const table = createTables(
+      item.organization,
+      item.repositories,
+      item.labels
+    );
+    tables.push(table);
+  }
+  fs.writeFileSync(inputs.outFile, tables.join("\n"));
+}
+
+async function createTables(org: string, repos: string[], labels: string[]) {
   const organization = new Organization(org);
   for (const repo of repos) {
     await octokit
@@ -22,7 +35,7 @@ async function main(org: string, repos: string[], labels: string[]) {
       });
   }
   const table = organization.tablify();
-  fs.writeFileSync("test.md", table);
+  return table;
 }
 
-export { main };
+main();
