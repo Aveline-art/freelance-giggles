@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "watch": "npx tsc --watch",
-    "build": "npx tsc"
+    "build": "ncc build src/index.ts --license licenses.txt"
   },
   "repository": {
     "type": "git",
