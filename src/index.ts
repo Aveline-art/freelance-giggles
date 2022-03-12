@@ -23,6 +23,8 @@ async function main() {
   console.log("Writing file...");
   fs.writeFileSync(inputs.outFile, tables.join("\n"));
 
+  exec("ls");
+
   exec("script.sh", (error, stdout, stderr) => {
     console.log(error);
     console.log(stdout);
