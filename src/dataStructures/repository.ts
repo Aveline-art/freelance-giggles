@@ -44,6 +44,13 @@ class Repository {
   listIssues() {
     return this.issues;
   }
+
+  tablify() {
+    return `|Issue|Roles|\n|-|-|\n${this.issues
+      .map((issue) => issue.tablify())
+      .filter(Boolean)
+      .join("\n")}`;
+  }
 }
 
 export { Repository };

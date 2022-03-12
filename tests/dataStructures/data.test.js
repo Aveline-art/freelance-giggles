@@ -25,6 +25,23 @@ const data = {
               ],
             },
           },
+          {
+            title: "test-issue-title2",
+            url: "test-issue-url2",
+            labels: {
+              nodes: [
+                {
+                  name: "test-label-name2",
+                },
+                {
+                  name: "dependencys",
+                },
+                {
+                  name: "role: back end",
+                },
+              ],
+            },
+          },
         ],
       },
     },

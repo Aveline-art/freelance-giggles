@@ -27,6 +27,18 @@ class Organization {
   listRepositories() {
     return this.repositories;
   }
+
+  tablify() {
+    return `${this.repositories
+      .map((repository) => {
+        return (
+          `### [${this.name}/${repository.name}](${repository.url})\n` +
+          `##### [README](${repository.readme}) | [CONTRIBUTING](${repository.contributing})\n` +
+          `${repository.tablify()}`
+        );
+      })
+      .join("\n")}`;
+  }
 }
 
 export { Organization };

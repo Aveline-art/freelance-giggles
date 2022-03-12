@@ -18,5 +18,5 @@ test("assert Issue Labels With Obj", () => {
   issue.addLabels(data.organization.repository.issues.nodes[0].labels.nodes);
   expect(issue.labels.length).toBe(3);
   expect(issue.hasDependency()).toBe(false);
-  expect(issue.roles()).toBe(["front end"]);
+  expect(issue.roles).toStrictEqual(["front end"]);
 });

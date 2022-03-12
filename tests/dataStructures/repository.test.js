@@ -20,6 +20,6 @@ test("assert Repo Issues Empty", () => {
 test("assert Repo Issues With Obj", () => {
   const repository = new Repository("test-name", "test-url", "test-branch");
   repository.addIssues(data.organization.repository.issues.nodes);
-  expect(repository.issues.length).toBe(1);
+  expect(repository.issues.length).toBe(2);
   expect(repository.listIssues()[0].title).toBe("test-issue-title");
 });
