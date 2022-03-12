@@ -1,13 +1,14 @@
-name: "Hello World"
-description: "Greet someone and record the time"
+name: "Organization Issue Board"
+description: "Consolidate issues of an series of repos based on labels"
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  config-file:
+    description: "A JSON file containing an Array of Organizations, Repos, and Labels to query for issues that needs help."
     required: true
-    default: "World"
-outputs:
-  time: # id of output
-    description: "The time we greeted you"
+  myToken:
+    description: "A valid API token scoped to read the repos described in the config-file and commit to the repo where this GHA is used."
 runs:
   using: "node16"
-  main: "index.js"
+  main: "dist/index.js"
+branding:
+  icon: "moon"
+  color: "blue"
