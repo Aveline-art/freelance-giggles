@@ -45,18 +45,19 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 
 async function commitScript() {
   var ls = spawn("git", ["config", "user.name", "github-actions"]);
-  dataTest(ls);
+  dataTest(ls, "1");
   ls = spawn("git", ["config", "user.email", "github-actions@github.com"]);
-  dataTest(ls);
+  dataTest(ls, "2");
   ls = spawn("git", ["add", "."]);
-  dataTest(ls);
+  dataTest(ls, "3");
   ls = spawn("git", ["commit", "-m", "Updated with new data"]);
-  dataTest(ls);
+  dataTest(ls, "4");
   ls = spawn("git", ["push"]);
-  dataTest(ls);
+  dataTest(ls, "5");
 }
 
-function dataTest(ls) {
+function dataTest(ls, num) {
+  console.log(num, "is the command number");
   ls.stdout.on("data", (data) => {
     console.log(`stdout: ${data}`);
   });

@@ -8728,17 +8728,18 @@ async function createTables(org, repos, labels) {
 }
 async function commitScript() {
     var ls = (0, child_process_1.spawn)("git", ["config", "user.name", "github-actions"]);
-    dataTest(ls);
+    dataTest(ls, "1");
     ls = (0, child_process_1.spawn)("git", ["config", "user.email", "github-actions@github.com"]);
-    dataTest(ls);
+    dataTest(ls, "2");
     ls = (0, child_process_1.spawn)("git", ["add", "."]);
-    dataTest(ls);
+    dataTest(ls, "3");
     ls = (0, child_process_1.spawn)("git", ["commit", "-m", "Updated with new data"]);
-    dataTest(ls);
+    dataTest(ls, "4");
     ls = (0, child_process_1.spawn)("git", ["push"]);
-    dataTest(ls);
+    dataTest(ls, "5");
 }
-function dataTest(ls) {
+function dataTest(ls, num) {
+    console.log(num, "is the command number");
     ls.stdout.on("data", (data) => {
         console.log(`stdout: ${data}`);
     });
