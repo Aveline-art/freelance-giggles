@@ -57,16 +57,18 @@ async function commitScript() {
 }
 
 function dataTest(ls, num) {
-  console.log(num, "is the command number");
   ls.stdout.on("data", (data) => {
+    console.log(num, "is the command number");
     console.log(`stdout: ${data}`);
   });
 
   ls.stderr.on("data", (data) => {
+    console.log(num, "is the command number");
     console.error(`stderr: ${data}`);
   });
 
   ls.on("close", (code) => {
+    console.log(num, "is the command number");
     console.log(`child process exited with code ${code}`);
   });
 }
