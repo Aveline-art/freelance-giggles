@@ -8735,7 +8735,7 @@ async function commitScript() {
     dataTest(ls);
     ls = (0, child_process_1.spawn)("git", ["commit", "-m", "Updated with new data"]);
     dataTest(ls);
-    ls = (0, child_process_1.spawn)("git", ["push", "user.name", "github-actions"]);
+    ls = (0, child_process_1.spawn)("git", ["push"]);
     dataTest(ls);
 }
 function dataTest(ls) {

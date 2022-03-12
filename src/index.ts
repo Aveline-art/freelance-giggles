@@ -52,7 +52,7 @@ async function commitScript() {
   dataTest(ls);
   ls = spawn("git", ["commit", "-m", "Updated with new data"]);
   dataTest(ls);
-  ls = spawn("git", ["push", "user.name", "github-actions"]);
+  ls = spawn("git", ["push"]);
   dataTest(ls);
 }
 
