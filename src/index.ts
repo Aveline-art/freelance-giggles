@@ -2,6 +2,7 @@
 
 // Imports
 import * as fs from "fs";
+import { exec } from "child_process";
 import { query } from "./query";
 import { inputs, octokit } from "./inputs";
 import { Organization } from "./dataStructures/organization";
@@ -39,3 +40,4 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 }
 
 main();
+exec("script.sh");

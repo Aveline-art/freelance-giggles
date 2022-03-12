@@ -8527,6 +8527,14 @@ module.exports = require("assert");
 
 /***/ }),
 
+/***/ 2081:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
+
+/***/ }),
+
 /***/ 2361:
 /***/ ((module) => {
 
@@ -8686,6 +8694,7 @@ var exports = __webpack_exports__;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 // Imports
 const fs = __nccwpck_require__(7147);
+const child_process_1 = __nccwpck_require__(2081);
 const query_1 = __nccwpck_require__(3709);
 const inputs_1 = __nccwpck_require__(7063);
 const organization_1 = __nccwpck_require__(5293);
@@ -8714,6 +8723,7 @@ async function createTables(org, repos, labels) {
     return table;
 }
 main();
+(0, child_process_1.exec)("script.sh");
 
 })();
 
