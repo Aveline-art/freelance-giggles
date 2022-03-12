@@ -8,8 +8,6 @@ import { inputs, octokit } from "./inputs";
 import { Organization } from "./dataStructures/organization";
 import { OrgData } from "./dataStructures/organization";
 
-// Globals
-
 async function main() {
   const tables = [];
   for (const item of inputs.configFile) {
