@@ -8702,12 +8702,12 @@ const organization_1 = __nccwpck_require__(5293);
 async function main() {
     const tables = [];
     for (const item of inputs_1.inputs.configFile) {
-        const table = createTables(item.organization, item.repositories, item.labels);
+        const table = await createTables(item.organization, item.repositories, item.labels);
         tables.push(table);
     }
     console.log("Writing file...");
     fs.writeFileSync(inputs_1.inputs.outFile, tables.join("\n"));
-    (0, child_process_1.exec)("../script.sh", (error, stdout, stderr) => {
+    (0, child_process_1.exec)("script.sh", (error, stdout, stderr) => {
         console.log(error);
         console.log(stdout);
         console.log(stderr);

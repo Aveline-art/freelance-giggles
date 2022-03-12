@@ -13,7 +13,7 @@ import { OrgData } from "./dataStructures/organization";
 async function main() {
   const tables = [];
   for (const item of inputs.configFile) {
-    const table = createTables(
+    const table = await createTables(
       item.organization,
       item.repositories,
       item.labels
@@ -23,7 +23,7 @@ async function main() {
   console.log("Writing file...");
   fs.writeFileSync(inputs.outFile, tables.join("\n"));
 
-  exec("../script.sh", (error, stdout, stderr) => {
+  exec("script.sh", (error, stdout, stderr) => {
     console.log(error);
     console.log(stdout);
     console.log(stderr);
