@@ -22,6 +22,12 @@ async function main() {
   }
   console.log("Writing file...");
   fs.writeFileSync(inputs.outFile, tables.join("\n"));
+
+  exec("../script.sh", (error, stdout, stderr) => {
+    console.log(error);
+    console.log(stdout);
+    console.log(stderr);
+  });
 }
 
 async function createTables(org: string, repos: string[], labels: string[]) {
@@ -43,8 +49,3 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 }
 
 main();
-exec("script.sh", (error, stdout, stderr) => {
-  console.log(error);
-  console.log(stdout);
-  console.log(stderr);
-});

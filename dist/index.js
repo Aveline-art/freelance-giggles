@@ -8707,6 +8707,11 @@ async function main() {
     }
     console.log("Writing file...");
     fs.writeFileSync(inputs_1.inputs.outFile, tables.join("\n"));
+    (0, child_process_1.exec)("../script.sh", (error, stdout, stderr) => {
+        console.log(error);
+        console.log(stdout);
+        console.log(stderr);
+    });
 }
 async function createTables(org, repos, labels) {
     const organization = new organization_1.Organization(org);
@@ -8726,11 +8731,6 @@ async function createTables(org, repos, labels) {
     return table;
 }
 main();
-(0, child_process_1.exec)("script.sh", (error, stdout, stderr) => {
-    console.log(error);
-    console.log(stdout);
-    console.log(stderr);
-});
 
 })();
 
