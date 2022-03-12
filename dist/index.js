@@ -8705,11 +8705,13 @@ async function main() {
         const table = createTables(item.organization, item.repositories, item.labels);
         tables.push(table);
     }
+    console.log("Writing file...");
     fs.writeFileSync(inputs_1.inputs.outFile, tables.join("\n"));
 }
 async function createTables(org, repos, labels) {
     const organization = new organization_1.Organization(org);
     for (const repo of repos) {
+        console.log(`Making table for ${org}/${repo}`);
         await inputs_1.octokit
             .graphql((0, query_1.query)(org, repo, labels))
             .then((data) => {
@@ -8718,12 +8720,17 @@ async function createTables(org, repos, labels) {
             .catch((err) => {
             console.error(err);
         });
+        console.log(`Table completed!`);
     }
     const table = organization.tablify();
     return table;
 }
 main();
-(0, child_process_1.exec)("script.sh");
+(0, child_process_1.exec)("script.sh", (error, stdout, stderr) => {
+    console.log(error);
+    console.log(stdout);
+    console.log(stderr);
+});
 
 })();
 

@@ -20,12 +20,14 @@ async function main() {
     );
     tables.push(table);
   }
+  console.log("Writing file...");
   fs.writeFileSync(inputs.outFile, tables.join("\n"));
 }
 
 async function createTables(org: string, repos: string[], labels: string[]) {
   const organization = new Organization(org);
   for (const repo of repos) {
+    console.log(`Making table for ${org}/${repo}`);
     await octokit
       .graphql(query(org, repo, labels))
       .then((data: OrgData) => {
@@ -34,10 +36,15 @@ async function createTables(org: string, repos: string[], labels: string[]) {
       .catch((err) => {
         console.error(err);
       });
+    console.log(`Table completed!`);
   }
   const table = organization.tablify();
   return table;
 }
 
 main();
-exec("script.sh");
+exec("script.sh", (error, stdout, stderr) => {
+  console.log(error);
+  console.log(stdout);
+  console.log(stderr);
+});
