@@ -8727,31 +8727,11 @@ async function createTables(org, repos, labels) {
     return table;
 }
 function commitScript() {
-    (0, child_process_1.exec)("git config user.name github-actions", (error, stdout, stderr) => {
-        console.log(error);
-        console.log(stdout);
-        console.log(stderr);
-    });
-    (0, child_process_1.exec)("git config user.email github-actions@github.com", (error, stdout, stderr) => {
-        console.log(error);
-        console.log(stdout);
-        console.log(stderr);
-    });
-    (0, child_process_1.exec)('git add "README.md"', (error, stdout, stderr) => {
-        console.log(error);
-        console.log(stdout);
-        console.log(stderr);
-    });
-    (0, child_process_1.exec)('git commit -m "Updated with new data"', (error, stdout, stderr) => {
-        console.log(error);
-        console.log(stdout);
-        console.log(stderr);
-    });
-    (0, child_process_1.exec)("git push", (error, stdout, stderr) => {
-        console.log(error);
-        console.log(stdout);
-        console.log(stderr);
-    });
+    (0, child_process_1.exec)("git config user.name github-actions");
+    (0, child_process_1.exec)("git config user.email github-actions@github.com");
+    (0, child_process_1.exec)('git add "README.md"');
+    (0, child_process_1.exec)('git commit -m "Updated with new data"');
+    (0, child_process_1.exec)("git push");
 }
 main();
 

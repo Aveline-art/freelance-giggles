@@ -44,38 +44,11 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 }
 
 function commitScript() {
-  exec("git config user.name github-actions", (error, stdout, stderr) => {
-    console.log(error);
-    console.log(stdout);
-    console.log(stderr);
-  });
-
-  exec(
-    "git config user.email github-actions@github.com",
-    (error, stdout, stderr) => {
-      console.log(error);
-      console.log(stdout);
-      console.log(stderr);
-    }
-  );
-
-  exec('git add "README.md"', (error, stdout, stderr) => {
-    console.log(error);
-    console.log(stdout);
-    console.log(stderr);
-  });
-
-  exec('git commit -m "Updated with new data"', (error, stdout, stderr) => {
-    console.log(error);
-    console.log(stdout);
-    console.log(stderr);
-  });
-
-  exec("git push", (error, stdout, stderr) => {
-    console.log(error);
-    console.log(stdout);
-    console.log(stderr);
-  });
+  exec("git config user.name github-actions");
+  exec("git config user.email github-actions@github.com");
+  exec('git add "README.md"');
+  exec('git commit -m "Updated with new data"');
+  exec("git push");
 }
 
 main();
