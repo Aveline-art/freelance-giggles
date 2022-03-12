@@ -46,7 +46,7 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 function commitScript() {
   exec("git config user.name github-actions");
   exec("git config user.email github-actions@github.com");
-  exec('git add "README.md"');
+  exec(`git add "${inputs.outFile}"`);
   exec('git commit -m "Updated with new data"');
   exec("git push");
 }

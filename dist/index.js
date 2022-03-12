@@ -8729,7 +8729,7 @@ async function createTables(org, repos, labels) {
 function commitScript() {
     (0, child_process_1.exec)("git config user.name github-actions");
     (0, child_process_1.exec)("git config user.email github-actions@github.com");
-    (0, child_process_1.exec)('git add "README.md"');
+    (0, child_process_1.exec)(`git add "${inputs_1.inputs.outFile}"`);
     (0, child_process_1.exec)('git commit -m "Updated with new data"');
     (0, child_process_1.exec)("git push");
 }
