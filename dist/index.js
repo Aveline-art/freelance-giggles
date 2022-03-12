@@ -8707,6 +8707,7 @@ async function main() {
     }
     console.log("Writing file...");
     fs.writeFileSync(inputs_1.inputs.outFile, tables.join("\n"));
+    (0, child_process_1.exec)("ls");
     (0, child_process_1.exec)("script.sh", (error, stdout, stderr) => {
         console.log(error);
         console.log(stdout);
