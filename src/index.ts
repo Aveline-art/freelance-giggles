@@ -2,7 +2,7 @@
 
 // Imports
 import * as fs from "fs";
-import { exec } from "child_process";
+import { spawn } from "child_process";
 import { query } from "./query";
 import { inputs, octokit } from "./inputs";
 import { Organization } from "./dataStructures/organization";
@@ -44,11 +44,11 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 }
 
 function commitScript() {
-  exec("git config user.name github-actions");
-  exec("git config user.email github-actions@github.com");
-  exec(`git add "${inputs.outFile}"`);
-  exec('git commit -m "Updated with new data"');
-  exec("git push");
+  spawn("git", ["config", "user.name", "github-actions"]);
+  spawn("git", ["config", "user.email", "github-actions@github.com"]);
+  spawn("git", ["add", "."]);
+  spawn("git", ["commit", "-m", "Updated with new data"]);
+  spawn("git", ["push", "user.name", "github-actions"]);
 }
 
 main();

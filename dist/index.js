@@ -8727,11 +8727,11 @@ async function createTables(org, repos, labels) {
     return table;
 }
 function commitScript() {
-    (0, child_process_1.exec)("git config user.name github-actions");
-    (0, child_process_1.exec)("git config user.email github-actions@github.com");
-    (0, child_process_1.exec)(`git add "${inputs_1.inputs.outFile}"`);
-    (0, child_process_1.exec)('git commit -m "Updated with new data"');
-    (0, child_process_1.exec)("git push");
+    (0, child_process_1.spawn)("git", ["config", "user.name", "github-actions"]);
+    (0, child_process_1.spawn)("git", ["config", "user.email", "github-actions@github.com"]);
+    (0, child_process_1.spawn)("git", ["add", "."]);
+    (0, child_process_1.spawn)("git", ["commit", "-m", "Updated with new data"]);
+    (0, child_process_1.spawn)("git", ["push", "user.name", "github-actions"]);
 }
 main();
 
