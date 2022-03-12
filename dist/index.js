@@ -8727,6 +8727,9 @@ async function createTables(org, repos, labels) {
     return table;
 }
 function commitScript() {
+    (0, child_process_1.spawn)("git", ["--version"]).stdout.on("data", (data) => {
+        console.log(`stdout: ${data}`);
+    });
     (0, child_process_1.spawn)("git", ["config", "user.name", "github-actions"]);
     (0, child_process_1.spawn)("git", ["config", "user.email", "github-actions@github.com"]);
     (0, child_process_1.spawn)("git", ["add", "."]);

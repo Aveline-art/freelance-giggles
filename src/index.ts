@@ -44,6 +44,9 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 }
 
 function commitScript() {
+  spawn("git", ["--version"]).stdout.on("data", (data) => {
+    console.log(`stdout: ${data}`);
+  });
   spawn("git", ["config", "user.name", "github-actions"]);
   spawn("git", ["config", "user.email", "github-actions@github.com"]);
   spawn("git", ["add", "."]);
