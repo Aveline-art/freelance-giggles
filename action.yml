@@ -1,11 +1,16 @@
 name: "Organization Issue Board"
 description: "Consolidate issues of an series of repos based on labels"
 inputs:
-  config-file:
+  configFile:
     description: "A JSON file containing an Array of Organizations, Repos, and Labels to query for issues that needs help."
     required: true
   myToken:
     description: "A valid API token scoped to read the repos described in the config-file and commit to the repo where this GHA is used."
+    required: true
+  outFile:
+    description: "The md file that the results will be written into."
+    required: false
+    default: "README.md"
 runs:
   using: "node16"
   main: "dist/index.js"

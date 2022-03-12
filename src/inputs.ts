@@ -5,10 +5,16 @@ import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as fs from "fs";
 
+interface inputs {
+  configFile: JSON;
+  myToken: string;
+  outFile: string;
+}
+
 const inputs = {
-  // Required
-  configFile: parseConfig(core.getInput("config-file")), // a json configuration
-  myToken: core.getInput("myToken"), // a string containing the token, used only to verify octokit
+  configFile: parseConfig(core.getInput("configFile")),
+  myToken: core.getInput("myToken"),
+  outFile: core.getInput("outFile"),
 };
 
 const octokit = github.getOctokit(inputs.myToken);
