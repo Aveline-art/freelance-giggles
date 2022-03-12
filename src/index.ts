@@ -50,11 +50,14 @@ function commitScript() {
     console.log(stderr);
   });
 
-  exec('git commit -m "Updated with new data"', (error, stdout, stderr) => {
-    console.log(error);
-    console.log(stdout);
-    console.log(stderr);
-  });
+  exec(
+    'git commit -m "Updated with new data" --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"',
+    (error, stdout, stderr) => {
+      console.log(error);
+      console.log(stdout);
+      console.log(stderr);
+    }
+  );
 
   exec("git push", (error, stdout, stderr) => {
     console.log(error);

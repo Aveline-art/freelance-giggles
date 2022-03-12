@@ -8732,7 +8732,7 @@ function commitScript() {
         console.log(stdout);
         console.log(stderr);
     });
-    (0, child_process_1.exec)('git commit -m "Updated with new data"', (error, stdout, stderr) => {
+    (0, child_process_1.exec)('git commit -m "Updated with new data" --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"', (error, stdout, stderr) => {
         console.log(error);
         console.log(stdout);
         console.log(stderr);
