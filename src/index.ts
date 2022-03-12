@@ -22,7 +22,7 @@ async function main() {
   }
   console.log("Writing file...");
   fs.writeFileSync(inputs.outFile, tables.join("\n"));
-  commitScript();
+  await commitScript();
 }
 
 async function createTables(org: string, repos: string[], labels: string[]) {
@@ -43,7 +43,7 @@ async function createTables(org: string, repos: string[], labels: string[]) {
   return table;
 }
 
-function commitScript() {
+async function commitScript() {
   spawn("git", ["--version"]).stdout.on("data", (data) => {
     console.log(`stdout: ${data}`);
   });

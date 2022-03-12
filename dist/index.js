@@ -8707,7 +8707,7 @@ async function main() {
     }
     console.log("Writing file...");
     fs.writeFileSync(inputs_1.inputs.outFile, tables.join("\n"));
-    commitScript();
+    await commitScript();
 }
 async function createTables(org, repos, labels) {
     const organization = new organization_1.Organization(org);
@@ -8726,7 +8726,7 @@ async function createTables(org, repos, labels) {
     const table = organization.tablify();
     return table;
 }
-function commitScript() {
+async function commitScript() {
     (0, child_process_1.spawn)("git", ["--version"]).stdout.on("data", (data) => {
         console.log(`stdout: ${data}`);
     });
