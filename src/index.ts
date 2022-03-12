@@ -44,20 +44,32 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 }
 
 function commitScript() {
-  exec('git add "README.md"', (error, stdout, stderr) => {
+  exec("git config user.name github-actions", (error, stdout, stderr) => {
     console.log(error);
     console.log(stdout);
     console.log(stderr);
   });
 
   exec(
-    'git commit -m "Updated with new data" --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"',
+    "git config user.email github-actions@github.com",
     (error, stdout, stderr) => {
       console.log(error);
       console.log(stdout);
       console.log(stderr);
     }
   );
+
+  exec('git add "README.md"', (error, stdout, stderr) => {
+    console.log(error);
+    console.log(stdout);
+    console.log(stderr);
+  });
+
+  exec('git commit -m "Updated with new data"', (error, stdout, stderr) => {
+    console.log(error);
+    console.log(stdout);
+    console.log(stderr);
+  });
 
   exec("git push", (error, stdout, stderr) => {
     console.log(error);
