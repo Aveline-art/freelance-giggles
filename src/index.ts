@@ -44,36 +44,30 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 }
 
 async function commitScript() {
-  spawn("git", ["--version"]).stdout.on("data", (data) => {
+  var ls = spawn("git", ["config", "user.name", "github-actions"]);
+  dataTest(ls);
+  ls = spawn("git", ["config", "user.email", "github-actions@github.com"]);
+  dataTest(ls);
+  ls = spawn("git", ["add", "."]);
+  dataTest(ls);
+  ls = spawn("git", ["commit", "-m", "Updated with new data"]);
+  dataTest(ls);
+  ls = spawn("git", ["push", "user.name", "github-actions"]);
+  dataTest(ls);
+}
+
+function dataTest(ls) {
+  ls.stdout.on("data", (data) => {
     console.log(`stdout: ${data}`);
   });
-  spawn("git", ["config", "user.name", "github-actions"]).stdout.on(
-    "data",
-    (data) => {
-      console.log(`stdout: ${data}`);
-    }
-  );
-  spawn("git", ["config", "user.email", "github-actions@github.com"]).stdout.on(
-    "data",
-    (data) => {
-      console.log(`stdout: ${data}`);
-    }
-  );
-  spawn("git", ["add", "."]).stdout.on("data", (data) => {
-    console.log(`stdout: ${data}`);
+
+  ls.stderr.on("data", (data) => {
+    console.error(`stderr: ${data}`);
   });
-  spawn("git", ["commit", "-m", "Updated with new data"]).stdout.on(
-    "data",
-    (data) => {
-      console.log(`stdout: ${data}`);
-    }
-  );
-  spawn("git", ["push", "user.name", "github-actions"]).stdout.on(
-    "data",
-    (data) => {
-      console.log(`stdout: ${data}`);
-    }
-  );
+
+  ls.on("close", (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
 }
 
 main();

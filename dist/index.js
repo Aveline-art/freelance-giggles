@@ -8727,23 +8727,26 @@ async function createTables(org, repos, labels) {
     return table;
 }
 async function commitScript() {
-    (0, child_process_1.spawn)("git", ["--version"]).stdout.on("data", (data) => {
+    var ls = (0, child_process_1.spawn)("git", ["config", "user.name", "github-actions"]);
+    dataTest(ls);
+    ls = (0, child_process_1.spawn)("git", ["config", "user.email", "github-actions@github.com"]);
+    dataTest(ls);
+    ls = (0, child_process_1.spawn)("git", ["add", "."]);
+    dataTest(ls);
+    ls = (0, child_process_1.spawn)("git", ["commit", "-m", "Updated with new data"]);
+    dataTest(ls);
+    ls = (0, child_process_1.spawn)("git", ["push", "user.name", "github-actions"]);
+    dataTest(ls);
+}
+function dataTest(ls) {
+    ls.stdout.on("data", (data) => {
         console.log(`stdout: ${data}`);
     });
-    (0, child_process_1.spawn)("git", ["config", "user.name", "github-actions"]).stdout.on("data", (data) => {
-        console.log(`stdout: ${data}`);
+    ls.stderr.on("data", (data) => {
+        console.error(`stderr: ${data}`);
     });
-    (0, child_process_1.spawn)("git", ["config", "user.email", "github-actions@github.com"]).stdout.on("data", (data) => {
-        console.log(`stdout: ${data}`);
-    });
-    (0, child_process_1.spawn)("git", ["add", "."]).stdout.on("data", (data) => {
-        console.log(`stdout: ${data}`);
-    });
-    (0, child_process_1.spawn)("git", ["commit", "-m", "Updated with new data"]).stdout.on("data", (data) => {
-        console.log(`stdout: ${data}`);
-    });
-    (0, child_process_1.spawn)("git", ["push", "user.name", "github-actions"]).stdout.on("data", (data) => {
-        console.log(`stdout: ${data}`);
+    ls.on("close", (code) => {
+        console.log(`child process exited with code ${code}`);
     });
 }
 main();
