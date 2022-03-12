@@ -44,33 +44,11 @@ async function createTables(org: string, repos: string[], labels: string[]) {
 }
 
 async function commitScript() {
-  var ls = spawn("git", ["config", "user.name", "github-actions"]);
-  dataTest(ls, "1");
-  ls = spawn("git", ["config", "user.email", "github-actions@github.com"]);
-  dataTest(ls, "2");
-  ls = spawn("git", ["add", "."]);
-  dataTest(ls, "3");
-  ls = spawn("git", ["commit", "-m", "Updated with new data"]);
-  dataTest(ls, "4");
-  ls = spawn("git", ["push"]);
-  dataTest(ls, "5");
-}
-
-function dataTest(ls, num) {
-  ls.stdout.on("data", (data) => {
-    console.log(num, "is the command number");
-    console.log(`stdout: ${data}`);
-  });
-
-  ls.stderr.on("data", (data) => {
-    console.log(num, "is the command number");
-    console.error(`stderr: ${data}`);
-  });
-
-  ls.on("close", (code) => {
-    console.log(num, "is the command number");
-    console.log(`child process exited with code ${code}`);
-  });
+  spawn("git", ["config", "user.name", "github-actions"]);
+  spawn("git", ["config", "user.email", "github-actions@github.com"]);
+  spawn("git", ["add", "."]);
+  spawn("git", ["commit", "-m", "Updated with new data"]);
+  spawn("git", ["push"]);
 }
 
 main();
